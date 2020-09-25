@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getWeather(s:String){
-        val url = "http://api.weatherapi.com/v1/current.json?key=e26bf3d9cba2466bb26112541202409&q="+s
+        val url = "https://api.weatherapi.com/v1/current.json?key=e26bf3d9cba2466bb26112541202409&q="+s
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
@@ -56,13 +56,14 @@ class MainActivity : AppCompatActivity() {
                 textViewTemp.text = response.getJSONObject("current").getString("temp_c") + "\u00B0"
                 val imageUrl : String = response.getJSONObject("current").getJSONObject("condition").getString("icon").toString()
 
-                Glide.with(this).load("http:" + imageUrl).into(currentWeatherImage)
+                Glide.with(this).load("https:" + imageUrl).into(currentWeatherImage)
 
             },
             {
 
                 currentWeather.text = "cant update"
             }
+
         )
 
         queue.add(jsonObjectRequest)
